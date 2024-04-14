@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <% @threads.keys.each do |key| %>
+      <div class="col-md-4 mt-5">
+        <div class="card p-2 message-card">
+          <% @threads[key].each do |message| %>
+            <p class=<%= message.role == "assistant" ? "text-primary" : ""%>><%= message.text %></p>
+          <% end %>
+        </div>
+        <%= form_with model: Message.new do |form| %>
+          <input type="hidden" name="message[from][id]" value=<%= key %>>
+          <%= form.text_area :text, class:"form-control" %>
+          <%= form.submit "Send", class: "btn btn-primary mt-2" %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="col-md-4 mt-5">
+      <%= form_with model: Message.new, local: true do |form| %>
+        <input type="hidden" name="message[from][id]" value=<%= rand(10000) %>>
+        <%= form.text_area :text, class:"form-control" %>
+        <%= form.submit "Send", class: "btn btn-primary mt-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>
