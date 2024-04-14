@@ -1,4 +1,4 @@
-class MessagesController < ActionController::Api
+class Api::MessagesController < ActionController::API
   def create
     role = "user"
     user_id = params["message"]["from"]["id"].to_s
