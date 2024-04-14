@@ -40,5 +40,6 @@ module Connections
     config.generators.system_tests = nil
 
     config.hosts << '.tunnelmole.net'
+    config.hosts << '.herokuapp.com'
   end
 end
